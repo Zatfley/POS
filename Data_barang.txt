@@ -1,0 +1,3 @@
+Barang 1: Kopi 10000
+Barang 2: Teh 5000
+Barang 3: Susu 9000
