@@ -11,13 +11,17 @@ class Barang:
 		bayar = jumlah * self.harga
 
 		return round(bayar)
-	def pembayaran(self,duit):
-		self.duit = duit - self.bayar
+	def pembayaran(self,duit,kembalian=0):
+		self.kembalian = duit - self.total_semua
 
-		return duit
+		return 'Kembalian Pelanggan: '+str(self.kembalian)
 
-	def total_belanja(self):
-		pass
+	def total_belanja(self,total_semua=0):
+		self.total_semua = 0
+		for daftar in range(len(list_belanja)):
+			self.total_semua += list_belanja[daftar][2]
+
+		return 'Total Keseluruhan: %s'%(self.total_semua)
 
 file_barang = open('Data_barang.txt','r')
 baca_file = file_barang.readlines()
@@ -55,11 +59,11 @@ while tambah == 'y' or tambah == 'Y':
 	list_belanja.append(struk_belanjaan)
 	tambah = input('Tambah Belanjaan(Y/N)? ')
 
-total_semua = 0
-for daftar in range(len(list_belanja)):
-	total_semua += list_belanja[daftar][2]
 
-print('Total Keseluruhan: %s'%(total_semua))
+print(data_barang.total_belanja())
+
+duit = int(input('Masukkan Uang Pelanggan: Rp.'))
+print(data_barang.pembayaran(duit))
 
 menu = input('Keluar toko? ')
 if menu == 'y':
@@ -68,3 +72,4 @@ if menu == 'y':
 if __name__ == '__main__':
 	main()
 
+file_barang.close()
